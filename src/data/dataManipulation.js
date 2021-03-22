@@ -22,20 +22,5 @@ const extractCategories = (array, existingArray = []) => {
   return existingArray;
 };
 
-const options = (array) => {
-  return array.reduce((all, current) => {
-    const { id } = current;
-    //check to see if there is sub categories key
-    if (current.categories) {
-      const additionalCategories = extractCategories(current.categories);
-      const obj = format(id);
-      return [...all, ...additionalCategories, obj];
-    } else {
-      const obj = format(id);
-      return [...all, obj];
-    }
-  }, []);
-};
-
-const allOptions = options(all);
+const allOptions = extractCategories(all);
 export default allOptions;
