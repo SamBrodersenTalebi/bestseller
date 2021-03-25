@@ -19,14 +19,17 @@ function App() {
     : null;
 
   const handleOnChange = (value, { action }) => {
+    if (action === 'clear') {
+      setFilter([]);
+    }
     if (action === 'remove-value') {
-      const newState = value.map((item) => item.value);
-      setFilter(newState);
+      //const newState = value.map((item) => item.value);
+      setFilter(value);
     }
     if (action === 'select-option') {
-      const category = value[value.length - 1].value;
-      const newState = [...filter, category];
-      setFilter(newState);
+      // const category = value[value.length - 1].value;
+      // const newState = [...filter, category];
+      setFilter(value);
     }
   };
 
@@ -58,6 +61,7 @@ function App() {
                 className='basic-multi-select'
                 classNamePrefix='select'
                 onChange={handleOnChange}
+                value={filter}
               />
             </div>
             <Button
